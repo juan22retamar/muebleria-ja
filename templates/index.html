@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>Mueblería J.A.</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+
+    <!-- NAVEGACIÓN -->
+    <nav>
+      <span>Mueblería J.A.</span>
+      <a href="#inicio">Inicio</a>
+      <a href="#productos">Productos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+
+    <!-- INICIO -->
+    <section id="inicio">
+      <h1>Mueblería J.A.</h1>
+      <p>Muebles de calidad para tu hogar.</p>
+    </section>
+
+    <!-- PRODUCTOS -->
+    <section id="productos">
+      <h2>Nuestros Productos</h2>
+
+      <!-- FILTROS -->
+      <div class="filtros">
+        <a href="/?#productos" class="filtro {% if not categoria %}activo{% endif %}">Todos</a>
+        <a href="/?categoria=Living#productos" class="filtro {% if categoria == 'Living' %}activo{% endif %}">Living</a>
+        <a href="/?categoria=Comedor#productos" class="filtro {% if categoria == 'Comedor' %}activo{% endif %}">Comedor</a>
+        <a href="/?categoria=Dormitorio#productos" class="filtro {% if categoria == 'Dormitorio' %}activo{% endif %}">Dormitorio</a>
+        <a href="/?categoria=Estudio#productos" class="filtro {% if categoria == 'Estudio' %}activo{% endif %}">Estudio</a>
+      </div>
+
+      <!-- GRILLA DE PRODUCTOS -->
+      <div class="productos">
+        {% for producto in productos %}
+        <div class="producto">
+         <img src="{{ url_for('static', filename='imagenes/' + producto[4]) }}" alt="{{ producto[1] }}" onclick="abrirLightbox(this.src)">
+          <div class="producto-info">
+            <span class="categoria">{{ producto[3] }}</span>
+            <h3>{{ producto[1] }}</h3>
+            <p class="precio">${{ "{:,.0f}".format(producto[2]) }}</p>
+            <button class="btn" onclick="abrirModal()">Ver más</button>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <p>📍 Dirección: Av. Siempreviva 123</p>
+      <p>📞 Teléfono: 011-1234-5678</p>
+      <p>✉️ Email: muebleriaJA@gmail.com</p>
+    </section>
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="cerrarLightbox()">
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  function abrirLightbox(src) {
+    document.getElementById("lightbox").style.display = "flex";
+    document.getElementById("lightbox-img").src = src;
+  }
+
+  function cerrarLightbox() {
+    document.getElementById("lightbox").style.display = "none";
+  }
+  function abrirModal() {
+    document.getElementById("modal").style.display = "flex";
+}
+
+function cerrarModal() {
+    document.getElementById("modal").style.display = "none";
+}
+</script>
+<!-- MODAL -->
+<div id="modal" onclick="cerrarModal()">
+  <div class="modal-contenido">
+    <h2>alan puto</h2>
+    <button onclick="cerrarModal()">Cerrar</button>
+  </div>
+</div>
+  </body>
+</html>
