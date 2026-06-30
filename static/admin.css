@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #fafafa;
+    color: #1a1a1a;
+    padding: 40px;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 32px;
+}
+
+h2 {
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+}
+
+.form-section {
+    background-color: white;
+    padding: 32px;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    max-width: 500px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+input, select, textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+button {
+    padding: 12px;
+    background-color: #1a1a1a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+button:hover {
+    background-color: #333;
+}
+
+.lista-productos {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 600px;
+}
+
+.item-producto {
+    background-color: white;
+    padding: 16px;
+    border-radius: 8px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.item-producto img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.item-producto h3 {
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+.item-producto p {
+    font-size: 0.85rem;
+    color: #777;
+}

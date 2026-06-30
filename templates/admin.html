@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>Panel de administración</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+  </head>
+  <body>
+
+    <h1>Panel de administración</h1>
+
+    <!-- FORMULARIO -->
+    <section class="form-section">
+      <h2>Agregar producto</h2>
+      <form action="/admin/agregar" method="POST" enctype="multipart/form-data">
+        <input type="text" name="nombre" placeholder="Nombre del producto" required>
+        <input type="number" name="precio" placeholder="Precio" required>
+        <select name="categoria" required>
+          <option value="">Seleccionar categoría</option>
+          <option value="Living">Living</option>
+          <option value="Comedor">Comedor</option>
+          <option value="Dormitorio">Dormitorio</option>
+          <option value="Estudio">Estudio</option>
+        </select>
+        <textarea name="descripcion" placeholder="Descripción"></textarea>
+        <input type="text" name="medidas" placeholder="Medidas (ej: Alto: 90cm | Ancho: 80cm)">
+        <input type="file" name="imagen" accept="image/*" required>
+        <button type="submit">Agregar producto</button>
+      </form>
+    </section>
+
+    <!-- LISTA DE PRODUCTOS -->
+    <section class="lista-section">
+      <h2>Productos actuales</h2>
+      <div class="lista-productos">
+        {% for producto in productos %}
+        <div class="item-producto">
+          <img src="{{ url_for('static', filename='imagenes/' + producto[4]) }}" alt="{{ producto[1] }}">
+          <div>
+            <h3>{{ producto[1] }}</h3>
+            <p>${{ "{:,.0f}".format(producto[2]) }} — {{ producto[3] }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+  </body>
+</html>

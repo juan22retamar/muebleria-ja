@@ -52,7 +52,15 @@ def obtener_productos(categoria=None):
     productos = cursor.fetchall()
     con.close()
     return productos
-
+def agregar_producto(nombre, precio, categoria, imagen, descripcion, medidas):
+    con = conectar()
+    cursor = con.cursor()
+    cursor.execute(
+        "INSERT INTO productos (nombre, precio, categoria, imagen, descripcion, medidas) VALUES (?, ?, ?, ?, ?, ?)",
+        (nombre, precio, categoria, imagen, descripcion, medidas)
+    )
+    con.commit()
+    con.close()
 if __name__ == "__main__":
     crear_tabla()
     insertar_productos_ejemplo()
