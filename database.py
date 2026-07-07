@@ -61,6 +61,30 @@ def agregar_producto(nombre, precio, categoria, imagen, descripcion, medidas):
     )
     con.commit()
     con.close()
+def eliminar_producto(id):
+    con = conectar()
+    cursor = con.cursor()
+    cursor.execute("DELETE FROM productos WHERE id = ?", (id,))
+    con.commit()
+    con.close()
+
+def obtener_producto(id):
+    con = conectar()
+    cursor = con.cursor()
+    cursor.execute("SELECT * FROM productos WHERE id = ?", (id,))
+    producto = cursor.fetchone()
+    con.close()
+    return producto
+def editar_producto(id, nombre, precio, categoria, descripcion, medidas):
+    con = conectar()
+    cursor = con.cursor()
+    cursor.execute("""
+        UPDATE productos 
+        SET nombre = ?, precio = ?, categoria = ?, descripcion = ?, medidas = ?
+        WHERE id = ?
+    """, (nombre, precio, categoria, descripcion, medidas, id))
+    con.commit()
+    con.close()
 if __name__ == "__main__":
     crear_tabla()
     insertar_productos_ejemplo()

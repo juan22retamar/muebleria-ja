@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>Editar producto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+  </head>
+  <body>
+
+    <div class="admin-header">
+      <h1>Editar producto</h1>
+      <a href="/admin" class="btn-logout">Volver al panel</a>
+    </div>
+
+    <section class="form-section">
+      <h2>Modificar datos</h2>
+      <form action="/admin/editar/{{ producto[0] }}" method="POST">
+        <input type="text" name="nombre" value="{{ producto[1] | e }}" required>
+        <input type="number" name="precio" value="{{ producto[2] }}" required>
+        <select name="categoria" required>
+          <option value="Living" {% if producto[3] == 'Living' %}selected{% endif %}>Living</option>
+          <option value="Comedor" {% if producto[3] == 'Comedor' %}selected{% endif %}>Comedor</option>
+          <option value="Dormitorio" {% if producto[3] == 'Dormitorio' %}selected{% endif %}>Dormitorio</option>
+          <option value="Estudio" {% if producto[3] == 'Estudio' %}selected{% endif %}>Estudio</option>
+        </select>
+        <textarea name="descripcion">{{ producto[5] | e }}</textarea>
+        <input type="text" name="medidas" value="{{ producto[6] | e }}">
+        <button type="submit">Guardar cambios</button>
+      </form>
+    </section>
+
+  </body>
+</html>

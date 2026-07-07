@@ -8,9 +8,11 @@
   </head>
   <body>
 
-    <h1>Panel de administración</h1>
+    <div class="admin-header">
+      <h1>Panel de administración</h1>
+      <a href="/logout" class="btn-logout">Cerrar sesión</a>
+    </div>
 
-    <!-- FORMULARIO -->
     <section class="form-section">
       <h2>Agregar producto</h2>
       <form action="/admin/agregar" method="POST" enctype="multipart/form-data">
@@ -30,7 +32,6 @@
       </form>
     </section>
 
-    <!-- LISTA DE PRODUCTOS -->
     <section class="lista-section">
       <h2>Productos actuales</h2>
       <div class="lista-productos">
@@ -40,6 +41,10 @@
           <div>
             <h3>{{ producto[1] }}</h3>
             <p>${{ "{:,.0f}".format(producto[2]) }} — {{ producto[3] }}</p>
+          </div>
+          <div class="item-acciones">
+            <a href="/admin/editar/{{ producto[0] }}" class="btn-editar">Editar</a>
+            <a href="/admin/eliminar/{{ producto[0] }}" class="btn-eliminar" onclick="return confirm('¿Seguro que querés eliminar este producto?')">Eliminar</a>
           </div>
         </div>
         {% endfor %}
