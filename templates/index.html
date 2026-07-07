@@ -50,13 +50,25 @@
       </div>
     </section>
 
-    <!-- CONTACTO -->
-    <section id="contacto">
-      <h2>Contacto</h2>
-      <p>📍 Dirección: Av. Siempreviva 123</p>
-      <p>📞 Teléfono: 011-1234-5678</p>
-      <p>✉️ Email: muebleriaJA@gmail.com</p>
-    </section>
+<!-- CONTACTO -->
+<section id="contacto">
+  <h2>Contacto</h2>
+
+  <div class="contacto-contenido">
+    <div class="contacto-info">
+      <p>📍 Av. Siempreviva 123</p>
+      <p>📞 011-1234-5678</p>
+      <p>✉️ muebleriaJA@gmail.com</p>
+    </div>
+
+    <form class="contacto-form" id="formContacto">
+      <input type="text" id="nombre" placeholder="Tu nombre" required>
+      <input type="text" id="asunto" placeholder="Asunto">
+      <textarea id="mensaje" placeholder="Tu mensaje" required></textarea>
+      <button type="submit">Enviar por WhatsApp</button>
+    </form>
+  </div>
+</section>
 
     <!-- LIGHTBOX -->
     <div id="lightbox" onclick="cerrarLightbox()">
@@ -98,6 +110,15 @@
       function cerrarModal() {
         document.getElementById("modal").style.display = "none";
       }
+      document.getElementById("formContacto").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const nombre = document.getElementById("nombre").value;
+    const asunto = document.getElementById("asunto").value;
+    const mensaje = document.getElementById("mensaje").value;
+    const texto = `Hola! Soy ${nombre}. Asunto: ${asunto}. Mensaje: ${mensaje}`;
+    const url = `https://wa.me/5491112345678?text=${encodeURIComponent(texto)}`;
+    window.open(url, "_blank");
+});
     </script>
 
   </body>
